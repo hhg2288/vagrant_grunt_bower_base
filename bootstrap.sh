@@ -1,24 +1,27 @@
 #!/usr/bin/env bash
 
-echo ">>> Installing Base Items"
+echo ">>>>>   Installing Base Items"
 
-# Install base items
-sudo apt-get install -y curl wget build-essential python-software-properties python g++ make
+# Update Ubuntu
 sudo apt-get update
 
-# Add NodeJS repository
-sudo add-apt-repository -y ppa:chris-lea/node.js
+# Install Base modules
+sudo apt-get install -y apache2 git-core curl 
 
-# Update Again
+echo ">>>>>   Node Setup"
+sudo apt-get install python-software-properties software-properties-common 
+sudo apt-add-repository -y ppa:chris-lea/node.js
 sudo apt-get update
 
-# Install Apache & Node
-sudo apt-get install -y apache2 nodejs
+sudo apt-get install -y nodejs
 
-echo ">>> Installing NPM, Grunt CLI and Bower"
+echo ">>>>>   NPM Installed version"
+npm -v
 
-curl https://npmjs.org/install.sh | sh
+
+echo ">>>>>   Grunt & Bower Install"
 sudo npm install -g grunt-cli bower
 
+echo ">>>>>   Generating Symbolic Link"
 sudo rm -rf /var/www
-sudo ln -fs /vagrant /var/www
+sudo ln -fs /vagrant/dev /var/www
